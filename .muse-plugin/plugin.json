@@ -17,6 +17,14 @@
       {
         "id": "restore-release",
         "path": "skills/restore-release/SKILL.md"
+      },
+      {
+        "id": "host-mcp-server",
+        "path": "skills/host-mcp-server/SKILL.md"
+      },
+      {
+        "id": "review-projects",
+        "path": "skills/review-projects/SKILL.md"
       }
     ],
     "mcpServers": []
