@@ -8,15 +8,47 @@ Publish a site from a conversation and open the result while the change is still
 
 > “Publish this event page as a new project and show me the preview.”
 
-### What you can do
+> “Host this MCP server and give me the connector URL for Claude.”
 
-- Deploy a page, a React component, or a set of files and preview the resulting site.
-- Compare releases before a rollback. The release investigator reads history and status without making changes.
-- Publish a hosted workload and retrieve its connector URL.
+## What is in the plugin
 
-### Connect
+### Skills
 
-Sign in to OpZero with the account that owns the target project. The plugin uses the scoped OpZero endpoint at `https://opzero.sh/mcp/directory`. Project lookups send the requested project identifiers to OpZero. Publishing also sends the content you select and can put it on a public URL. Preview the source for secrets before publishing.
+| Skill | What it does |
+|---|---|
+| `publish-and-preview` | Deploys one HTML page, a set of files, a React component or a Markdown article, checks the deployment status and shows the live page. Updates an existing site by merging only the files that changed. |
+| `restore-release` | Reads deployment history, compares releases file by file, and rolls a project back to a release you choose. History is kept. |
+| `host-mcp-server` | Deploys an MCP server or agent from source, checks its health and cross client conformance, and returns the details each client needs to add it. |
+| `review-projects` | Lists and filters projects, finds stale or duplicate ones, and reports plan usage and sign in state. Read only. |
+
+Each skill folder may hold a `references` folder with argument tables and field notes that Claude reads when it needs them.
+
+### Agent
+
+`release-investigator` compares deployments and reports which one introduced a change. It can only read: its tools are `deployment_inspect`, `project_inspect` and `workload_inspect`. It never deploys, rolls back or deletes.
+
+### Hook
+
+One `PreToolUse` hook runs before this plugin's `deployment` tool. When the call would delete a deployment record, which is permanent, Claude Code asks you to confirm first. A rollback passes through without the extra prompt. The hook is the script `hooks/confirm-history-change.cjs`. It needs Node.js on your PATH, reads the pending tool call from standard input, and does not touch files or the network.
+
+## What the plugin connects to and sends
+
+- **MCP server.** The plugin connects to one remote server, the scoped OpZero endpoint at `https://opzero.sh/mcp/directory`. You sign in to OpZero with OAuth using the account that owns the target project. No API key is stored in the plugin.
+- **What is sent.** Project lookups send the project names or ids you ask about. Publishing sends the content you select, and OpZero serves it at a public URL under `opzero.sh`. Hosting an MCP server sends its source files. Check content for secrets before publishing: the skills tell Claude to do this and to keep credentials out of a deployment.
+- **What is not sent.** The plugin has no telemetry and makes no other network calls of its own.
+
+### Optional files for other clients
+
+These files are not run by Claude. They exist so the same product can be used from other assistants.
+
+- `scripts/build_openai.py` builds a ZIP package for ChatGPT and Codex from the files in this repository. It reads local files and writes ZIP files to the folder you name. It makes no network calls.
+- `integrations/grok_example.py` is a sample for the xAI API. It runs only when you run it. With `--dry-run` it prints a request and sends nothing. Without it, the script reads `XAI_API_KEY` from your environment and sends one request to `https://api.x.ai/v1/responses`. If `OPZERO_DEPLOY_ACCESS_TOKEN` is set, that OpZero access token is included in the request so that xAI can call the OpZero server for you.
+- `integrations/grok-servers.json`, `integrations/muse-settings.json` and the files under `integrations/openai` are configuration for those clients. They contain the same server URL and no credentials.
+
+## Limits
+
+- A deployment is public to anyone who has its URL.
+- This plugin's tool list covers deploying, reading history, rolling back, hosting workloads and reading projects. Renaming, archiving or deleting a project and setting a custom domain are done in the OpZero dashboard.
 
 [OpZero documentation](https://opzero.sh/docs) · [Privacy](https://opzero.sh/privacy) · [Support](https://opzero.sh/support)
 
@@ -26,3 +58,5 @@ Sign in to OpZero with the account that owns the target project. The plugin uses
 /plugin marketplace add OpZero-sh/plugins
 /plugin install opzero-deploy@opzero
 ```
+
+After installing, open `/mcp` and sign in to **opzero-deploy**.
