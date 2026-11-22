@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "opzero-deploy": {
+      "type": "streamable-http",
+      "url": "https://opzero.sh/mcp/directory"
+    }
+  }
+}

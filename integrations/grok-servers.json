@@ -1,0 +1,11 @@
+{
+  "opzero-deploy": {
+    "url": "https://opzero.sh/mcp/directory",
+    "allowed_tools": [
+      "deployment_inspect",
+      "project_inspect",
+      "workload_inspect"
+    ],
+    "token_env": "OPZERO_DEPLOY_ACCESS_TOKEN"
+  }
+}

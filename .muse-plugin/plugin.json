@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "name": "opzero-deploy",
+  "version": "1.0.0",
+  "displayName": "OpZero Deploy",
+  "description": "Publish a site, preview the result, and restore an earlier release with OpZero.",
+  "compat": {
+    "source": "native",
+    "manifestDir": ".muse-plugin"
+  },
+  "capabilities": {
+    "skills": [
+      {
+        "id": "publish-and-preview",
+        "path": "skills/publish-and-preview/SKILL.md"
+      },
+      {
+        "id": "restore-release",
+        "path": "skills/restore-release/SKILL.md"
+      }
+    ],
+    "mcpServers": []
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "opzero-deploy",
+  "version": "1.0.0",
+  "description": "Publish a site, preview the result, and restore an earlier release with OpZero.",
+  "author": {
+    "name": "OpZero"
+  },
+  "repository": "https://github.com/OpZero-sh/opzero-deploy-plugin",
+  "homepage": "https://github.com/OpZero-sh/opzero-deploy-plugin",
+  "displayName": "OpZero Deploy",
+  "documentationUrl": "https://github.com/OpZero-sh/opzero-deploy-plugin#readme",
+  "privacyPolicyUrl": "https://opzero.sh/privacy",
+  "supportUrl": "https://opzero.sh/support",
+  "termsOfServiceUrl": "https://opzero.sh/terms",
+  "icon": "./assets/icon.png",
+  "license": "LicenseRef-OpZero-Plugin"
+}

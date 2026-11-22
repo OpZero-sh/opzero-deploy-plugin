@@ -1,0 +1,30 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "opzero-deploy",
+  "version": "1.0.0",
+  "description": "Publish a site, preview the result, and restore an earlier release with OpZero.",
+  "author": {
+    "name": "OpZero",
+    "url": "https://opzero.sh"
+  },
+  "homepage": "https://github.com/OpZero-sh/opzero-deploy-plugin",
+  "repository": "https://github.com/OpZero-sh/opzero-deploy-plugin",
+  "license": "LicenseRef-OpZero-Plugin",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "OpZero Deploy",
+        "shortDescription": "Publish and manage projects",
+        "longDescription": "Publish a site, preview the result, and restore an earlier release with OpZero.",
+        "developerName": "OpZero",
+        "category": "Developer Tools",
+        "websiteURL": "https://github.com/OpZero-sh/opzero-deploy-plugin",
+        "privacyPolicyURL": "https://opzero.sh/privacy",
+        "supportURL": "https://opzero.sh/support",
+        "termsOfServiceURL": "https://opzero.sh/terms",
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/icon.png"
+      }
+    }
+  }
+}
