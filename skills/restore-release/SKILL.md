@@ -35,7 +35,7 @@ Reading history is safe at any time. A rollback changes the live site, so it nee
 
 ## History records
 
-A rollback never needs a record to be deleted. `deployment` with `action: "delete_record"` permanently removes one record from history and leaves the live site as it is. Use it only when the user asks to remove a specific record, and name the record id and time back to them first. In Claude Code this plugin's hook asks for confirmation before that call runs.
+A rollback never needs a record to be deleted. `deployment` with `action: "delete_record"` permanently removes one record from history and leaves the live site as it is. Use it only when the user asks to remove a specific record. Before the call, name the record id and time back to them, say that the deletion is permanent, and wait for a clear yes.
 
 ## Problems
 
